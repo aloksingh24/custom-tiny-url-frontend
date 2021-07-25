@@ -1,0 +1,40 @@
+<div class="container container-table">
+  <h3>Custom tiny url generator</h3>
+  <br>
+  <br>
+<form [formGroup]="createUrlForm" (ngSubmit)="genrateShortUrl()">
+<div class="form-group .d-md-flex">
+  <label for="exampleInputEmail1">Enter url to generate custom tiny url</label>
+  <input type="text" class="form-control" placeholder="Enter url" formControlName="url">
+</div>
+
+<div *ngIf="error" class="alert alert-danger" role="alert">
+  {{errorMessage}}
+</div>
+<button type="submit">GenerateUrl</button>
+</form>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="container container-table">
+<table class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">HashedUrl</th>
+      <th scope="col">AccessCount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let url of customTinyUrls; let i=index; trackBy: trackByFn;">
+      <td>{{i+1}}</td>
+      <td><a href={{url.hashedUrl}}>{{url.hashedUrl}}</a></td>
+      <td>{{url.accessCount}}</td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" (click)="getAllUrlInfo()">Get All URL's</button>
+</div>
+<router-outlet></router-outlet>
